@@ -1,17 +1,17 @@
 
-const Squarediv=()=>{
+const Squarediv=(props)=>{
     return(
-        <div style={styles.outerSquare} >
-            <div style={styles.whiteCircle}>
-                <div style={styles.innerCircle}></div>
-                <div style={styles.menuButton} >MENU</div>
-                <div style={styles.fastForward} >
+        <div id="container-element" style={styles.outerSquare} >
+            <div id="rotable" style={styles.whiteCircle}>
+                <div className='hv' onClick={()=>props.centerButtonClicked()} style={styles.innerCircle}></div>
+                <div className='hv' style={styles.menuButton} >MENU</div>
+                <div className='hv' style={styles.fastForward} >
                     <img style={styles.img} src="https://www.flaticon.com/svg/vstatic/svg/1792/1792919.svg?token=exp=1613989452~hmac=f84076397e4d85443a5e70f08f807c23" />
                 </div>
-                <div style={styles.stopPause} >
+                <div className='hv' style={styles.stopPause} >
                     <img style={styles.img} src="https://www.flaticon.com/svg/vstatic/svg/1792/1792864.svg?token=exp=1613989303~hmac=7d52adc31068a61ff1367b27d3013898" />
                 </div>
-                <div style={styles.fastReverse}>
+                <div className='hv' style={styles.fastReverse}>
                     <img style={styles.img} src="https://www.flaticon.com/svg/vstatic/svg/1792/1792913.svg?token=exp=1613989462~hmac=d99258edc6b8518d99e157c6a4848d45" />
                 </div>
             </div>
@@ -63,7 +63,10 @@ const styles={
     menuButton:{
         position:'absolute',
         top:'36.5%',
-        left:'48.3%'
+        left:'48.3%',
+        hover:{
+            cursor:'pointer'
+        }
     },
     img:{
         height:20,
