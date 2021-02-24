@@ -3,6 +3,7 @@ const Screen=(props)=>{
     const dispMenu=props.dispmenu;
     const options=props.options;
     const activeid=props.activeid;
+    const dispWall=props.dispWall;
     return(
         <div  style={styles.mainScreen}>
             <div style={styles.statusBar} >
@@ -10,7 +11,8 @@ const Screen=(props)=>{
                 <img style={styles.icon} src="https://www.flaticon.com/svg/vstatic/svg/3103/3103277.svg?token=exp=1614064459~hmac=fd8da0d5a09aaecdd63d477814b4393f" />
             </div>
             {dispMenu && <Listitem activeid={activeid} options={options}/>}
-            <img style={styles.img} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZDMvfchVd3td7_ESYYneQ4Mhq9mmU3knVw&usqp=CAU" />
+            {dispWall &&<img style={styles.img} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZDMvfchVd3td7_ESYYneQ4Mhq9mmU3knVw&usqp=CAU" />}
+            {!dispWall && props.jsx}
         </div>
     )
 }
@@ -36,7 +38,7 @@ const styles={
         width:270,
         height:15,
         diplay:'flex',
-        flexDirection:'row-reverse'
+        flexDirection:'row-reverse',
         },
     icon:{
         height:12,

@@ -1,3 +1,4 @@
+
 import Listoption from './Listoption';
 const Listitem=(props)=>{
     const options=props.options;
@@ -8,13 +9,45 @@ const Listitem=(props)=>{
             {
                 options.map((opt)=>{
                     return(
-                    <Listoption activeid={activeid} name={opt} key={opt.id} />)
+                        <Listoption activeid={activeid} name={opt} key={opt.id} />
+                //         <Router>
+
+                //    <Link to={opt.link} style={{textDecoration:'none', color:'black'}} > 
+                //    <Listoption activeid={activeid} name={opt} key={opt.id} />
+                //    </Link>
+                //    <Switch>
+                //        <Route path='/music'>
+                //            <a/>
+                //        </Route>
+                //        <Route path='/games'>
+                //            <b/>
+                //        </Route>
+                //        <Route path='/playlist'>
+                //            <c/>
+                //        </Route>
+                //        <Route path='/settings'>
+                //            <d/>
+                //        </Route>
+                //    </Switch>
+                //         </Router>
+                    )
                 })
             }
         </div>
     )
 }
-
+function a(){
+    <h2>Music</h2>
+}
+function b(){
+    <h2>Games</h2>
+}
+function c(){
+    <h2>My Playlist</h2>
+}
+function d(){
+    <h2>Settings</h2>
+}
 const styles={
     firstlist:{
         display:"flex",

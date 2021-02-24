@@ -28,7 +28,7 @@ const styles={
         width:169,
         marginBottom:1,
         boxShadow:'1px 1px 1px 0px rgb(0 0 0/17%)',
-        paddingTop:7,
+        paddingTop:7
     },
     ico:{ 
         height:18,
