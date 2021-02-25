@@ -1,3 +1,4 @@
+// screen for setting option
 const Settings=()=>{
     return(
         <div style={styles.set} >

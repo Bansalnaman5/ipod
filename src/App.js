@@ -12,8 +12,11 @@ class App extends React.Component{
   constructor(){
     super();
     this.state={
+      // for the display of wallpaper
       dispWall:true,
+      // for the display of side menu initially false
       dispMenu:false,
+      // options for the side menu along with the flat icon link
       options:[
         {
           name:"Music",
@@ -40,23 +43,32 @@ class App extends React.Component{
           link:'/settings'
         }
       ],
+      // activeid for the active class of side menu
       activeid:1,
+      // this is for the selection using side menu and open that page
       jsx:<Music/>,
+      // active state is for the functionality of menu button 
+      // activestate 0 means only wallpaper will be displayed
+      // activestate 1 means wallpaper with side menu will be displayed
+      // activestate 2 means that some option selected from side menu will be rendered without wallpepr and sidemenu
       activeState:0
     }
   }
 
   componentDidMount=()=>{
     let {activeid,activeState}=this.state;
+    // checking if activestate is 1 then display side menu
     if(activeState==1){
       this.setState({
         dispMenu:true,
         dispWall:true
       })
     }
+    // functioning of the wheel using zingtouch library
     var containerElement=document.getElementById('container-element');
     var activeRegion=ZingTouch.Region(containerElement);
     var childElement=document.getElementById('rotable');
+    // a change of 25 degree will change the option up or down
     let prevDown=-25;
     let prevUp=25;
     activeRegion.bind(childElement,'rotate',(e)=>{
@@ -65,6 +77,7 @@ class App extends React.Component{
         prevUp=25;
         // console.log("down",e.detail.distanceFromOrigin);
         if(activeid<4){
+          // changing the selected item from side menu ie blue background
           activeid+=1;
         }
       }
@@ -73,19 +86,23 @@ class App extends React.Component{
         prevDown=-25;
         // console.log('up',e.detail.distanceFromOrigin)
         if(activeid>1){
+          // changing the selected item from side menu ie blue background
           activeid-=1;
         }
       }
+      // setting the state of activeid after change
       this.setState({
         activeid:activeid
       });
       
     })
   }
-
+  // function for handling clicks on cenetr button
   centerButtonClicked=()=>{
     const {activeid,options,dispMenu,dispWall,activeState}=this.state;
     const opt=options[activeid-1];
+    // if only wallpaper id diplayed and center button is clicked then display side menu and change the state 
+    // as mentioned in constructor
     if(activeState==0){
       this.setState({
         dispMenu:true,
@@ -93,7 +110,8 @@ class App extends React.Component{
         activeState:activeState+1
       })
     }
-    
+    // rendering the selected menuitem according to the selection by user
+    // this is done by changing the state of jsx as declared in contructor
     if(activeid==1 && activeState==1){
       this.setState({
         dispWall:false,
@@ -127,15 +145,18 @@ class App extends React.Component{
       })
     }
   }
-
+  // function to handel click on menu button
   menuButtonFunction=()=>{
     let {activeState}=this.state;
+    // if only wallpaper is displayed and menu button in clicked then open the sidemenu 
+    // and increase the state as mentioned in constructor
     if(activeState==0){
       this.setState({
         activeState:activeState+1,
         dispMenu:true,
       });
     }
+    // if state is one that is sidemenu is displayed then decrease the state and set dispmenu false
     if(activeState==1){
       this.setState({
         dispWall:true,
@@ -143,6 +164,8 @@ class App extends React.Component{
         activeState:activeState-1
       });
     }
+    // if state is 2 that is any screen from selected options is rendered then decrease the state 
+    // and displaywallpaper and side menu
     if(activeState==2){
       this.setState({
         activeState:activeState-1,
@@ -151,6 +174,8 @@ class App extends React.Component{
       });
     }
   }
+  // screen is for the screen of ipod and squarediv is for the buttons
+  // and wheels
 
   render(){
     const {dispMenu,options,activeid,dispWall,jsx,activeState}=this.state;

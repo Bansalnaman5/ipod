@@ -1,4 +1,8 @@
+// options of the sidemenu
 
+// if activeid is same as current option then render blue background
+
+// using different class
 const Listoption=(props)=>{
     const opt=props.name;
     const activeid=props.activeid;

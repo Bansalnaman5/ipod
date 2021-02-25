@@ -1,6 +1,7 @@
 
 const Squarediv=(props)=>{
     return(
+        // id for the zingtouch class respoonse
         <div id="container-element" style={styles.outerSquare} >
             <div id="rotable" style={styles.whiteCircle}>
                 <div className='hv' onClick={()=>props.centerButtonClicked()} style={styles.innerCircle}></div>

@@ -1,4 +1,4 @@
-
+// screen for sidemenu
 import Listoption from './Listoption';
 const Listitem=(props)=>{
     const options=props.options;

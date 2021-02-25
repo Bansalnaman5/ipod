@@ -1,3 +1,4 @@
+//  screen for games option
  const Games=()=>{
      return(
          <div style={styles.gs}>

@@ -1,3 +1,4 @@
+// screen for the playlist option
 const Playlist=()=>{
     return(
         <div style={styles.play} >
