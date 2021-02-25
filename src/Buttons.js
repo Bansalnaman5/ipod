@@ -4,7 +4,7 @@ const Squarediv=(props)=>{
         <div id="container-element" style={styles.outerSquare} >
             <div id="rotable" style={styles.whiteCircle}>
                 <div className='hv' onClick={()=>props.centerButtonClicked()} style={styles.innerCircle}></div>
-                <div className='hv' style={styles.menuButton} >MENU</div>
+                <div className='hv' onClick={()=>{props.menuButtonFunction()}} style={styles.menuButton} >MENU</div>
                 <div className='hv' style={styles.fastForward} >
                     <img style={styles.img} src="https://www.flaticon.com/svg/vstatic/svg/1792/1792919.svg?token=exp=1613989452~hmac=f84076397e4d85443a5e70f08f807c23" />
                 </div>

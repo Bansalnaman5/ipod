@@ -1,12 +1,24 @@
 import React from 'react';
 
-const Music=()=>{
-    return(
-        <div style={styles.music}>
+class Music extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            currtime:0.00
+        }
+    }       
+    
+    render(){ 
+        let {currtime}=this.state;    
+        console.log(currtime);
+        return(
+            <div style={styles.music}>
             <img style={styles.img} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Eyw_8pj4dkLiQ6jV0i8ZEHts7tU6I6t8xQ&usqp=CAU"/>
-            <h4 style={{marginLeft:50}}>Currently playing song</h4>
+            <h4 style={{marginLeft:50}}>You song is playing here</h4>
+
         </div>
     )
+}
 }
 
 const styles={

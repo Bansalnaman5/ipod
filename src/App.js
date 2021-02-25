@@ -13,7 +13,7 @@ class App extends React.Component{
     super();
     this.state={
       dispWall:true,
-      dispMenu:true,
+      dispMenu:false,
       options:[
         {
           name:"Music",
@@ -41,12 +41,19 @@ class App extends React.Component{
         }
       ],
       activeid:1,
-      jsx:<Music/>
+      jsx:<Music/>,
+      activeState:0
     }
   }
 
-  componentDidMount(){
-    let {activeid}=this.state;
+  componentDidMount=()=>{
+    let {activeid,activeState}=this.state;
+    if(activeState==1){
+      this.setState({
+        dispMenu:true,
+        dispWall:true
+      })
+    }
     var containerElement=document.getElementById('container-element');
     var activeRegion=ZingTouch.Region(containerElement);
     var childElement=document.getElementById('rotable');
@@ -77,48 +84,81 @@ class App extends React.Component{
   }
 
   centerButtonClicked=()=>{
-    const {activeid,options,dispMenu,dispWall}=this.state;
+    const {activeid,options,dispMenu,dispWall,activeState}=this.state;
     const opt=options[activeid-1];
-    console.log(opt.name);
-    if(activeid==1){
+    if(activeState==0){
       this.setState({
-        dispWall:false,
-        dispMenu:false,
-        jsx:<Music/>
-      })
-    }
-    else if(activeid==2){
-      this.setState({
-          dispWall:false,
-          dispMenu:false,
-          jsx:<Games/>
-      })
-    }
-    else if(activeid==3){
-      this.setState({
-          dispWall:false,
-          dispMenu:false,
-          jsx:<Playlist/>
-      })
-    }
-    else if(activeid==4){
-      this.setState({
-          dispWall:false,
-          dispMenu:false,
-          jsx:<Settings/>
+        dispMenu:true,
+        dispWall:true,
+        activeState:activeState+1
       })
     }
     
+    if(activeid==1 && activeState==1){
+      this.setState({
+        dispWall:false,
+        dispMenu:false,
+        jsx:<Music/>,
+        activeState:activeState+1
+      })
+    }
+    else if(activeid==2 && activeState==1){
+      this.setState({
+          dispWall:false,
+          dispMenu:false,
+          jsx:<Games/>,
+          activeState:activeState+1
+      })
+    }
+    else if(activeid==3 && activeState==1){
+      this.setState({
+          dispWall:false,
+          dispMenu:false,
+          jsx:<Playlist/>,
+          activeState:activeState+1
+      })
+    }
+    else if(activeid==4 && activeState==1){
+      this.setState({
+          dispWall:false,
+          dispMenu:false,
+          jsx:<Settings/>,
+          activeState:activeState+1
+      })
+    }
+  }
 
-
+  menuButtonFunction=()=>{
+    let {activeState}=this.state;
+    if(activeState==0){
+      this.setState({
+        activeState:activeState+1,
+        dispMenu:true,
+      });
+    }
+    if(activeState==1){
+      this.setState({
+        dispWall:true,
+        dispMenu:false,
+        activeState:activeState-1
+      });
+    }
+    if(activeState==2){
+      this.setState({
+        activeState:activeState-1,
+        dispMenu:true,
+        dispWall:true
+      });
+    }
   }
 
   render(){
-    const {dispMenu,options,activeid,dispWall,jsx}=this.state;
+    const {dispMenu,options,activeid,dispWall,jsx,activeState}=this.state;
     return(
       <div className="allWrapper" >
         <Screen jsx={jsx} dispWall={dispWall} activeid={activeid} dispmenu={dispMenu} options={options}/>
-        <Squarediv centerButtonClicked={this.centerButtonClicked} />
+        <Squarediv menuButtonFunction={this.menuButtonFunction} centerButtonClicked={this.centerButtonClicked} />
+        <h3 style={{marginTop:100}}>NOTE : Either press center button or menu button for the side menu to appear</h3>
       </div>
     );
   }
